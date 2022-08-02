@@ -41,10 +41,13 @@ defmodule BTriangle do
   end
 
   @spec graph_add(graph(), pos_integer(), pos_integer()) :: graph()
-  def graph_add(map, u, v) do
+  def graph_add(map, u, v) when u < v do
     map
     |> Map.put(u, Map.get(map, u) |> Map.put(v, v))
-    |> Map.put(v, Map.get(map, v) |> Map.put(u, u))
+  end
+
+  def graph_add(map, u, v) when u > v do
+    graph_add(map, v, u)
   end
 
   @spec graph_match?(graph(), pos_integer(), pos_integer()) :: boolean()
