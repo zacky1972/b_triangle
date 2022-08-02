@@ -69,4 +69,26 @@ defmodule BTriangleTest do
     assert File.read!("test/support/input1.txt") |> BTriangle.read_graph() |> BTriangle.solve_task() ==
              2
   end
+
+  test "solve_task input2" do
+    assert File.read!("test/support/input2.txt") |> BTriangle.read_graph() |> BTriangle.solve_task() ==
+             0
+  end
+
+  test "solve_task input3" do
+    assert File.read!("test/support/input3.txt") |> BTriangle.read_graph() |> BTriangle.solve_task() ==
+             4
+  end
+
+  test "main input1" do
+    assert :os.cmd('cat test/support/input1.txt| mix run -e "BTriangle.main"') == '2\n'
+  end
+
+  test "main input2" do
+    assert :os.cmd('cat test/support/input2.txt| mix run -e "BTriangle.main"') == '0\n'
+  end
+
+  test "main input3" do
+    assert :os.cmd('cat test/support/input3.txt| mix run -e "BTriangle.main"') == '4\n'
+  end
 end

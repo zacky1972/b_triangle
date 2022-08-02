@@ -6,7 +6,7 @@ defmodule BTriangle do
   @type graph() :: %{pos_integer() => %{pos_integer() => pos_integer()}}
 
   def main do
-    IO.read(:all)
+    IO.read(:stdio, :eof)
     |> read_graph()
     |> solve2()
     |> IO.puts()
