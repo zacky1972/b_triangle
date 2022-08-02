@@ -2,6 +2,11 @@ defmodule BTriangleTest do
   use ExUnit.Case
   doctest BTriangle
 
+  setup_all %{} do
+    :os.cmd('cat test/support/input1.txt| mix run -e "BTriangle.main"')
+    :ok
+  end
+
   test "read_graph input1" do
     assert BTriangle.read_graph(File.read!("test/support/input1.txt")) ==
              {
