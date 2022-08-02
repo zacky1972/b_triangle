@@ -36,14 +36,22 @@ defmodule BTriangleTest do
   end
 
   test "solve input1" do
-    assert File.read!("test/support/input1.txt") |> BTriangle.read_graph() |> BTriangle.solve() == 2
+    assert File.read!("test/support/input1.txt") |> BTriangle.read_graph() |> BTriangle.solve() ==
+             2
   end
 
   test "solve input2" do
-    assert File.read!("test/support/input2.txt") |> BTriangle.read_graph() |> BTriangle.solve() == 0
+    assert File.read!("test/support/input2.txt") |> BTriangle.read_graph() |> BTriangle.solve() ==
+             0
   end
 
   test "solve input3" do
-    assert File.read!("test/support/input3.txt") |> BTriangle.read_graph() |> BTriangle.solve() == 4
+    assert File.read!("test/support/input3.txt") |> BTriangle.read_graph() |> BTriangle.solve() ==
+             4
+  end
+
+  test "solve_task input1" do
+    assert File.read!("test/support/input1.txt") |> BTriangle.read_graph() |> BTriangle.solve_task() ==
+             2
   end
 end

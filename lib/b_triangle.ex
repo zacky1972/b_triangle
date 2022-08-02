@@ -64,10 +64,31 @@ defmodule BTriangle do
     for a <- 1..(n - 2), b <- (a + 1)..(n - 1), c <- (b + 1)..n do
       {a, b, c}
     end
-    |> Enum.filter(fn {a, b, c}
-      -> graph_match?(graph, a, b)
-      and graph_match?(graph, b, c)
-      and graph_match?(graph, a, c) end)
+    |> Enum.filter(fn {a, b, c} ->
+      graph_match?(graph, a, b) and
+        graph_match?(graph, b, c) and
+        graph_match?(graph, a, c)
+    end)
+    |> Enum.count()
+  end
+
+  @spec solve_task({pos_integer(), graph()}) :: non_neg_integer()
+  def solve_task({n, graph}) do
+    for a <- 1..(n - 2), b <- (a + 1)..(n - 1), c <- (b + 1)..n do
+      {a, b, c}
+    end
+    |> Enum.chunk_every(10_000)
+    |> Enum.map(&
+      Task.async(fn ->
+        Enum.filter(&1, fn {a, b, c} ->
+          graph_match?(graph, a, b) and
+          graph_match?(graph, b, c) and
+          graph_match?(graph, a, c)
+        end)
+      end)
+    )
+    |> Enum.map(&Task.await/1)
+    |> List.flatten()
     |> Enum.count()
   end
 end
