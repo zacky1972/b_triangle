@@ -75,6 +75,25 @@ defmodule BTriangle do
     |> Enum.count()
   end
 
+  @spec solve2({pos_integer(), graph()}) :: non_neg_integer()
+  def solve2({n, graph}) do
+    for a <- 1..(n - 2), b <- (a + 1)..(n - 1) do
+      {a, b}
+    end
+    |> Enum.filter(fn {a, b} -> graph_match?(graph, a, b) end)
+    |> Enum.map(fn {a, b} ->
+      for c <- (b + 1)..n do
+        {a, b, c}
+      end
+    end)
+    |> List.flatten()
+    |> Enum.filter(fn {a, b, c} ->
+        graph_match?(graph, b, c) and
+        graph_match?(graph, a, c)
+    end)
+    |> Enum.count()
+  end
+
   @spec solve_task({pos_integer(), graph()}) :: non_neg_integer()
   def solve_task({n, graph}) do
     for a <- 1..(n - 2), b <- (a + 1)..(n - 1), c <- (b + 1)..n do

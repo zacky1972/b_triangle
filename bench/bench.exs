@@ -17,6 +17,7 @@ graph = Enum.reduce(uv, graph, fn {u, v}, map -> graph_add(map, u, v) end)
 Benchee.run(
   %{
     "solve #{n}, #{m}" => fn -> solve({n, graph}) end,
+    "solve2 #{n}, #{m}" => fn -> solve2({n, graph}) end,
     "solve_task #{n}, #{m}" => fn -> solve_task({n, graph}) end
   }
 )
