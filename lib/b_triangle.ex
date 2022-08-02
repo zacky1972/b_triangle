@@ -46,4 +46,28 @@ defmodule BTriangle do
     |> Map.put(u, Map.get(map, u) |> Map.put(v, v))
     |> Map.put(v, Map.get(map, v) |> Map.put(u, u))
   end
+
+  @spec graph_match?(graph(), pos_integer(), pos_integer()) :: boolean()
+  def graph_match?(graph, u, v) when u < v do
+    case graph |> Map.get(u) |> Map.get(v) do
+      nil -> false
+      _ -> true
+    end
+  end
+
+  def graph_match?(graph, u, v) when u > v do
+    graph_match?(graph, v, u)
+  end
+
+  @spec solve({pos_integer(), graph()}) :: non_neg_integer()
+  def solve({n, graph}) do
+    for a <- 1..(n - 2), b <- (a + 1)..(n - 1), c <- (b + 1)..n do
+      {a, b, c}
+    end
+    |> Enum.filter(fn {a, b, c}
+      -> graph_match?(graph, a, b)
+      and graph_match?(graph, b, c)
+      and graph_match?(graph, a, c) end)
+    |> Enum.count()
+  end
 end

@@ -34,4 +34,16 @@ defmodule BTriangleTest do
                 7 => %{1 => 1, 2 => 2, 4 => 4, 5 => 5}
               }}
   end
+
+  test "solve input1" do
+    assert File.read!("test/support/input1.txt") |> BTriangle.read_graph() |> BTriangle.solve() == 2
+  end
+
+  test "solve input2" do
+    assert File.read!("test/support/input2.txt") |> BTriangle.read_graph() |> BTriangle.solve() == 0
+  end
+
+  test "solve input3" do
+    assert File.read!("test/support/input3.txt") |> BTriangle.read_graph() |> BTriangle.solve() == 4
+  end
 end
