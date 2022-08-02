@@ -5,6 +5,13 @@ defmodule BTriangle do
 
   @type graph() :: %{pos_integer() => %{pos_integer() => pos_integer()}}
 
+  def main do
+    IO.read(:all)
+    |> read_graph()
+    |> solve2()
+    |> IO.puts()
+  end
+
   @spec read_graph(String.t()) :: {pos_integer(), graph()}
   def read_graph(str) do
     line =
