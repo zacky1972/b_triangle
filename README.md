@@ -1,6 +1,6 @@
 # BTriangle
 
-**TODO: Add description**
+Elixir code for B Triangle of AtCoder Beginner Contest 262
 
 ## Installation
 

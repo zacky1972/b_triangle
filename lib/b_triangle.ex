@@ -1,6 +1,6 @@
 defmodule BTriangle do
   @moduledoc """
-  Documentation for `BTriangle`.
+  Elixir code for B Triangle of AtCoder Beginner Contest 262.
   """
 
   @type graph() :: %{pos_integer() => %{pos_integer() => pos_integer()}}
